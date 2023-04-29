@@ -1,0 +1,49 @@
+
+                     			 
+
+                                  //////////////////task1///////////////
+
+#!/bin/bash
+
+# Define two floating-point numbers
+num1=1.674
+num2=2.234
+
+# Perform addition using bc command
+result=$(echo "$num1 + $num2" | bc)
+
+# Print the result
+echo result
+
+				//////////////////task1///////////////
+
+
+#!/bin/bash
+
+# Define a variable with a possible floating-point number
+number="3.14159"
+
+# Check if the number is a valid floating-point number
+[ $( echo ${1} | grep -c "^[+-]\?[0-9]*\.[0-9]\+$" ) -ne 1 ] && echo "${1} not a floating number" && exit 1 
+
+
+exit 0
+
+				//////////////////task3///////////////
+
+sudo nano /usr/local/bin/system-load.sh
+
+
+#!/bin/bash
+
+#check script is being used by user
+["(id -u)" !="0" ] && exit 1
+
+# Output the current date and system load using uptime command
+echo "$(date): $(uptime)" >> /var/log/system-load
+
+sudo chmod +x /usr/local/bin/system-load.sh
+
+sudo crontab -e
+
+* * * * * /usr/local/bin/system-load.sh
